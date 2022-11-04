@@ -1,0 +1,21 @@
+.add-movie {
+    width: 70%;
+    margin: auto;
+}
+.title{
+    text-align: center;
+}
+.item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 150px;
+}
+.name-c{
+    text-align: center;
+    width: 65%;
+}
+.btn-c{
+    width: 28%;
+}

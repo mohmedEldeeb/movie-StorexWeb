@@ -1,0 +1,46 @@
+<div class="continar">
+    <form #login="ngForm" (submit)="submitForm(login.value)">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" required ngModel #email="ngModel"
+            name="email" minlength="6">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <div class="alert alert-danger d-flex justify-content-center" *ngIf="email.touched && email.invalid">
+          <div *ngIf="email.errors?.['required']">*Email is required*</div>
+          <div *ngIf="email.errors?.['minlength']">*minlength is 6*</div>
+          <div *ngIf="email.errors?.['email']" 
+          >*Please enter valid email*</div>
+  
+        </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputname" class="form-label">Name </label>
+            <input type="text" class="form-control" required ngModel #name="ngModel"
+            name="name" minlength="3">
+        <div class="alert alert-danger d-flex justify-content-center" *ngIf="name.touched && name.invalid">
+          <div *ngIf="name.errors?.['required']">*name is required*</div>
+          <div *ngIf="name.errors?.['minlength']">*minlength is 3*</div>
+          <div *ngIf="name.errors?.['email']" 
+          >*Please enter valid name*</div>
+  
+        </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" name="password" ngModel #password="ngModel" minlength="6" required class="form-control" id="exampleInputPassword1" >
+        </div>
+
+        <div class="alert alert-danger d-flex justify-content-center" *ngIf="password.touched && password.invalid">
+            <div *ngIf="password.errors?.['required']">*password is required*</div>
+            <div *ngIf="password.errors?.['minlength']">*minlength is 6*</div>
+            <div *ngIf="password.errors?.['password']" 
+            >*Please enter valid password*</div>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

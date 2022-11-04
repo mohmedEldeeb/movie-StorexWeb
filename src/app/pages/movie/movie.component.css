@@ -1,0 +1,15 @@
+.continar{
+    padding: 10%;
+    display: flex;
+    width: 100%;
+}
+
+.img-card{
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-movie {
+    height: 400px;
+}

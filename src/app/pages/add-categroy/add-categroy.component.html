@@ -1,0 +1,25 @@
+<div  class="add-movie">
+    <br/>
+    <h2 class="title">if you wont to add categroy </h2>
+    <br/><br/>
+    <form #categroy="ngForm" (submit)="submitForm(categroy.value.name)">
+        <div class="mb-3">
+            <label for="exampleInputName" class="form-label">categroy Name </label>
+            <input id="exampleInputName" type="text" class="form-control" required [(ngModel)]="name"
+            name="name" minlength="2" ngModel=>
+        <div id="emailHelp" class="form-text">your categroy name.</div>
+        </div><br/>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br/><br/>
+    <h2 class="title">All Categroy </h2>
+    <div class="all-item" *ngFor="let c of allCategroy">
+        <div class="item">
+            <h3 class="name-c">{{c.name}}</h3>
+            <div class="btn-c">
+                <button (click)="toUpdate(c.id)" class="btn btn-primary">update</button>
+                <button (click)="toDelete(c)"  class="btn btn-primary">delete</button>
+            </div>
+        </div>
+    </div>
+</div>

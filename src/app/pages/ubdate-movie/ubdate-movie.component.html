@@ -1,0 +1,32 @@
+<div  class="add-movie">
+    <form #form="ngForm" (submit)="submitForm(form.value)" >
+        <div class="mb-3">
+            <label for="name" class="form-label">name</label>
+            <input [(ngModel)]="name" name="name" type="text" class="form-control" id="name" placeholder="name">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">description</label>
+            <input [(ngModel)]="description" name="description" type="text" class="form-control" id="description" placeholder="description">
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">image</label>
+            <input [(ngModel)]="image" name="image" (change)="addFile($event)" class="form-control" type="file" id="formFile">
+        </div>
+        <div *ngIf="!newImage">
+            <div> img</div>
+            <img [ngStyle]="{'width': '150px','height':'150px'}" src="https://test-api.storexweb.com/{{oldImage}}" />
+        </div>
+        <div *ngIf="newImage">
+            <div>new img</div>
+            <img [ngStyle]="{'width': '150px','height':'150px'}" [src]="newImage " alt="..." />
+        </div>
+        <div>
+            <select  [(ngModel)]="categroy" name="categroy" class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option *ngFor="let c of allCategroy " [ngValue]="c.id">{{c.name}}</option>
+            </select>
+        </div><br/>
+        <button type="submit" class="btn btn-primary">Add movie</button>
+
+    </form>
+</div>

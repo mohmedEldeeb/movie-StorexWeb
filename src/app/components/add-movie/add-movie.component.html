@@ -1,0 +1,25 @@
+<div *ngIf="categroy" class="add-movie">
+    <form [formGroup]="addMovie" (submit)="onSubmet(addMovie)" >
+        <div class="mb-3">
+            <label for="name" class="form-label">name</label>
+            <input formControlName="name" type="text" class="form-control" id="name" placeholder="name">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">description</label>
+            <input formControlName="description" type="text" class="form-control" id="description" placeholder="description">
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">image</label>
+            <input formControlName="image" (change)="addFile($event)" class="form-control" type="file" id="formFile">
+        </div>
+        <div>
+            <select  formControlName="categroy" class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option *ngFor="let c of categroy " [ngValue]="c.id">{{c.name}}</option>
+            </select>
+        </div><br/>
+        <button type="submit" class="btn btn-primary">Add movie</button>
+
+    </form>
+</div>
+<div *ngIf="!categroy"> Loding...</div>
