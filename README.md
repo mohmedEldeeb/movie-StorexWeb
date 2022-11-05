@@ -1,6 +1,8 @@
 # TaskStorexWeb
 TaskStorexWeb movie
 
+live  https://shimmering-sorbet-301be2.netlify.app/add-movie
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.1.
 
 ## Development server
