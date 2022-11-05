@@ -17,7 +17,7 @@ const routes: Routes = [
   {path:'categroy',component:AddCategroyComponent ,canActivate:[AuthGuard]},
   {path:'update-categroy/:id',component:UpdateCategroyComponent ,canActivate:[AuthGuard]},
   {path:'update-movie/:id',component:UbdateMovieComponent ,canActivate:[AuthGuard]},
-
+  {path: '', redirectTo: '/movie', pathMatch: 'full'},
 ];
 
 @NgModule({

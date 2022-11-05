@@ -15,7 +15,10 @@ export class LoginComponent implements OnDestroy {
 	constructor(private router :Router,private api:ApiService,public toastService: ToastService) {}
  
 	showSuccess() {
-		this.toastService.show(' success login ', { classname: 'bg-success text-light', delay: 10000 });
+		this.toastService.show(' success  ', { classname: 'bg-success text-light', delay: 10000 });
+	}
+  showStandard() {
+		this.toastService.show("errror", { classname: 'bg-danger text-light', delay: 15000 });
 	}
   submitForm(data:any){
     this.api.login(data).subscribe({
@@ -26,7 +29,7 @@ export class LoginComponent implements OnDestroy {
         this.showSuccess()
       },
       error:(error:any)=>{
-        console.log(error)
+        this.showStandard()
       }
     })
   } 

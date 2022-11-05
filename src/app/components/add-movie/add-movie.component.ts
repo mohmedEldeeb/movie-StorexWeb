@@ -1,8 +1,7 @@
-import { Component, OnInit }  from '@angular/core';
-import { Category }           from 'src/app/interface/interface';
-import { ApiService }         from 'src/app/serves/api/api.service';
-import { Observable }         from 'rxjs';
+import { Component, OnInit }      from '@angular/core';
+import { ApiService }             from 'src/app/serves/api/api.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ToastService }           from 'src/app/serves/toast.service';
 
 @Component({
   selector: 'app-add-movie',
@@ -18,39 +17,42 @@ export class AddMovieComponent implements OnInit {
     image: new FormControl(''),
     categroy:new FormControl('')
   });
-  constructor( private api :ApiService) { }
+  constructor( private api :ApiService,public toastService: ToastService) { }
+
+  showSuccess() {
+		this.toastService.show(' success  ', { classname: 'bg-success text-light', delay: 10000 });
+	}
+  showStandard() {
+		this.toastService.show("errror", { classname: 'bg-danger text-light', delay: 15000 });
+	}
+  
   onSubmet(data:any){
-    // this.api.addMovie
     const formData = new FormData();
-    formData.append("image", this.file);
-    formData.append("name", data.value.name);
-    formData.append("category_id", data.value.categroy);
-    formData.append("description", data.value.description);
-    // console.log("data",this.addMovie.value.name)
-    console.log("data",data,this.file)
-    console.log("c",this.file )
+          formData.append("image", this.file);
+          formData.append("name", data.value.name);
+          formData.append("category_id", data.value.categroy);
+          formData.append("description", data.value.description);
+    
     this.api.addMovie(formData).subscribe({
-      next:(res:any)=>{
-        console.log("res 222",res)
+      next:()=>{
+        this.showSuccess()
       },
-      error:(error)=>{
-        console.log(error)
+      error:()=>{
+        this.showStandard()
       }
     })
 
   }
   addFile(e:any){
-    console.info(e)
     this.file=e.target.files[0]
   }
   ngOnInit(): void {
     this.api.getCategory().subscribe({
       next:(res:any )=>{
         this.categroy=res.message 
-        console.log(res)
       },
-      error:(err:any)=>{
-        console.log(err)
+      error:()=>{
+        this.showStandard()
       }
     })
 

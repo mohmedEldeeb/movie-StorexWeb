@@ -1,6 +1,7 @@
 import { Component, OnInit }                from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ApiService }                       from 'src/app/serves/api/api.service';
+import { ToastService }                     from 'src/app/serves/toast.service';
 
 @Component({
   selector: 'app-ubdate-movie',
@@ -19,7 +20,14 @@ export class UbdateMovieComponent implements OnInit {
   newImage:any=false;
   imageGo:any=false;
 
-  constructor(private router :Router,private route:ActivatedRoute,private api:ApiService ) { }
+  constructor(private router :Router,private route:ActivatedRoute,private api:ApiService ,public toastService: ToastService) { }
+
+  showSuccess() {
+		this.toastService.show(' success  ', { classname: 'bg-success text-light', delay: 10000 });
+	}
+  showStandard() {
+		this.toastService.show("errror", { classname: 'bg-danger text-light', delay: 15000 });
+	}
 
   addFile(e:any){
     let reader = new FileReader();
@@ -47,10 +55,11 @@ export class UbdateMovieComponent implements OnInit {
 
     this.api.updateMovieById(Number(this.id),formData).subscribe({
       next:()=>{
+        this.showSuccess()
         this.router.navigateByUrl('/movie')
       },
-      error:(err:any)=>{
-        alert(err)
+      error:()=>{
+        this.showStandard()
       }
     })
   }

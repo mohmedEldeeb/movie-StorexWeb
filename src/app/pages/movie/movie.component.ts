@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 import { ApiService }        from 'src/app/serves/api/api.service';
+import { ToastService }      from 'src/app/serves/toast.service';
 
 @Component({
   selector: 'app-movie',
@@ -11,8 +12,14 @@ export class MovieComponent implements OnInit {
   data :any =false;
   allCategroy:any=false;
 
-  constructor(private api:ApiService ,private router :Router) { }
+  constructor(private api:ApiService ,private router :Router,public toastService: ToastService) { }
 
+  showSuccess() {
+		this.toastService.show(' success  ', { classname: 'bg-success text-light', delay: 10000 });
+	}
+  showStandard() {
+		this.toastService.show("errror", { classname: 'bg-danger text-light', delay: 15000 });
+	}
   goToUpdate(id:any){
     this.router.navigateByUrl(`update-movie/${id}`)
   }
@@ -21,11 +28,12 @@ export class MovieComponent implements OnInit {
     const formData = new FormData();
     formData.append("_method", "delete");
     this.api.updateMovieById(id,formData).subscribe({
-      next:(res:any)=>{
+      next:()=>{
         this.getMovie()
+        this.showSuccess()
       },
-      error:(err)=>{
-        alert(err)
+      error:()=>{
+        this.showStandard()
       }
     })
   }
@@ -35,6 +43,7 @@ export class MovieComponent implements OnInit {
     this.api.getMovieByCategroy(data).subscribe({
       next:(res:any)=>{
         this.data=res.message
+        this.showSuccess()
       }
     })
   }
